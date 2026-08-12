@@ -143,62 +143,6 @@ $(window).on('load', function() {
 
     bolbyPopup();
 
-    /*=========================================================================
-     Infinite Scroll
-     =========================================================================*/
-    var curPage = 1;
-    var pagesNum = $(".portfolio-pagination").find("li a:last").text();   // Number of pages
-
-    $container.infinitescroll({
-        itemSelector: '.grid-item',
-        nextSelector: '.portfolio-pagination li a',
-        navSelector: '.portfolio-pagination',
-        extraScrollPx: 0,
-        bufferPx: 0,
-        maxPage: 6,
-        loading: {
-            finishedMsg: "No more works",
-            msgText: '',
-            speed: 'slow',
-            selector: '.load-more',
-        }
-    },
-    // trigger Masonry as a callback
-    function( newElements ) {
-
-      var $newElems = $( newElements );
-      $newElems.imagesLoaded(function(){  
-        $newElems.animate({ opacity: 1 });
-        $container.isotope( 'appended', $newElems );
-      });
-
-      bolbyPopup();
-
-      // Check last page
-      curPage++;
-      if(curPage == pagesNum) {
-        $( '.load-more' ).remove();
-      }
-
-    });
-
-    $container.infinitescroll( 'unbind' );
-
-    $( '.load-more .btn' ).on('click', function() {
-      $container.infinitescroll( 'retrieve' );
-      // display loading icon
-      $( '.load-more .btn i' ).css('display', 'inline-block');
-      $( '.load-more .btn i' ).addClass('fa-spin');
-
-      $(document).ajaxStop(function () {
-        setTimeout(function(){
-               // hide loading icon
-          $( '.load-more .btn i' ).hide();
-        }, 1000);
-      });
-      return false;
-    });
-
     /* ======= Mobile Filter ======= */
 
     // bind filter on select change
@@ -224,21 +168,6 @@ $(window).on('load', function() {
     };
 });
 
-$(document).on('ready', function() {
-    "use strict";
-
-    /*=========================================================================
-                Slick Slider
-    =========================================================================*/
-    $('.testimonials-wrapper').slick({
-      dots: true,
-      arrows: false,
-      autoplay: true,
-      autoplaySpeed: 3000
-    });
-
-});
-
 $(function(){
     "use strict";
 
@@ -247,14 +176,18 @@ $(function(){
     =========================================================================*/
     $('.menu-icon button').on( 'click', function() {
         $('header.desktop-header-1, main.content, header.mobile-header-1').toggleClass('open');
+		var isOpen = $('header.desktop-header-1').hasClass('open');
+		$(this).attr('aria-expanded', isOpen).attr('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
     });
 
     $('main.content').on( 'click', function() {
         $('header.desktop-header-1, main.content, header.mobile-header-1').removeClass('open');
+		$('.mobile-header-1 .menu-icon button').attr('aria-expanded', 'false').attr('aria-label', 'Open navigation menu');
     });
 
     $('.vertical-menu li a').on( 'click', function() {
         $('header.desktop-header-1, main.content, header.mobile-header-1').removeClass('open');
+		$('.mobile-header-1 .menu-icon button').attr('aria-expanded', 'false').attr('aria-label', 'Open navigation menu');
     });
 
     $('.menu-icon button').on( 'click', function() {
@@ -389,5 +322,7 @@ $(function(){
             scrollTop : 0                       // Scroll to top of body
         }, 400);
     });
+
+	$('#copyright-year').text(new Date().getFullYear());
 
 });
