@@ -168,6 +168,205 @@ $(window).on('load', function() {
     };
 });
 
+/*=========================================================================
+    Lightweight scroll motion
+=========================================================================*/
+(function () {
+  "use strict";
+  var motionItems = Array.prototype.slice.call(document.querySelectorAll(
+    'section:not(.home) .section-title, #about .about-card, #about .fact-item, #services .service-box, #experience .timeline, #education .timeline, #works .portfolio-item, #blog .achievement-summary, #blog .achievement-card, #contact .contact-shell'
+  ));
+  motionItems.forEach(function (item) {
+    item.classList.add('scroll-motion-item');
+  });
+  var activeMotionItems = new Set();
+  if ('IntersectionObserver' in window) {
+    var motionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          activeMotionItems.add(entry.target);
+        } else {
+          activeMotionItems.delete(entry.target);
+        }
+      });
+      requestMotionFrame();
+    }, { rootMargin: '30% 0px 30% 0px' });
+    motionItems.forEach(function (item) {
+      motionObserver.observe(item);
+    });
+  } else {
+    motionItems.forEach(function (item) {
+      activeMotionItems.add(item);
+    });
+  }
+
+  var homeSection = document.getElementById('home');
+  if (homeSection && 'IntersectionObserver' in window) {
+    var homeObserver = new IntersectionObserver(function (entries) {
+      homeSection.classList.toggle('is-visual-active', entries[0].isIntersecting);
+    }, { threshold: 0.05 });
+    homeObserver.observe(homeSection);
+  } else if (homeSection) {
+    homeSection.classList.add('is-visual-active');
+  }
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var frameRequested = false;
+
+  function renderScrollMotion() {
+    frameRequested = false;
+    var useMotion = !reduceMotion.matches;
+
+    activeMotionItems.forEach(function (item) {
+      var itemRect = item.getBoundingClientRect();
+      var itemFocus = itemRect.top + Math.min(itemRect.height, 360) * 0.5;
+      var distance = (itemFocus - window.innerHeight * 0.54) / window.innerHeight;
+      var clamped = Math.max(-1, Math.min(1, distance));
+      var motionEnabled = useMotion && window.innerWidth > 768;
+      var motionAmount = motionEnabled ? clamped : 0;
+      var motionDepth = Math.min(1, Math.abs(motionAmount));
+
+      item.style.setProperty('--motion-y', (motionAmount * 46).toFixed(2) + 'px');
+      item.style.setProperty('--motion-tilt', (motionAmount * -2).toFixed(2) + 'deg');
+      item.style.setProperty('--motion-scale', (1 - motionDepth * 0.022).toFixed(3));
+      item.style.setProperty('--motion-opacity', (1 - motionDepth * 0.18).toFixed(3));
+    });
+
+  }
+
+  function requestMotionFrame() {
+    if (!frameRequested) {
+      frameRequested = true;
+      window.requestAnimationFrame(renderScrollMotion);
+    }
+  }
+
+  window.addEventListener('scroll', requestMotionFrame, { passive: true });
+  window.addEventListener('resize', requestMotionFrame);
+  if (typeof reduceMotion.addEventListener === 'function') {
+    reduceMotion.addEventListener('change', requestMotionFrame);
+  }
+  document.addEventListener('visibilitychange', function () {
+    document.body.classList.toggle('page-paused', document.hidden);
+    requestMotionFrame();
+  });
+  renderScrollMotion();
+}());
+
+/*=========================================================================
+    Scroll-triggered typewriter accents
+=========================================================================*/
+(function () {
+  "use strict";
+
+  var targets = Array.prototype.slice.call(document.querySelectorAll('[data-typewriter]:not([data-typewriter-load])'));
+  var loadTargets = Array.prototype.slice.call(document.querySelectorAll('[data-typewriter-load]'));
+  var allTargets = targets.concat(loadTargets);
+  if (!allTargets.length) {
+    return;
+  }
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+    allTargets.forEach(function (target) {
+      target.classList.add('typewriter-complete');
+    });
+    return;
+  }
+
+  allTargets.forEach(function (target) {
+    var text = target.textContent.trim();
+    var textNode = document.createElement('span');
+    var cursor = document.createElement('span');
+
+    target.setAttribute('aria-label', text);
+    target.dataset.typewriterText = text;
+    target.textContent = '';
+    textNode.className = 'typewriter-text';
+    textNode.setAttribute('aria-hidden', 'true');
+    cursor.className = 'typewriter-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    target.appendChild(textNode);
+    target.appendChild(cursor);
+  });
+
+  function renderTypedText(output, text, length, highlight) {
+    var visibleText = text.slice(0, length);
+    var highlightStart = highlight ? text.indexOf(highlight) : -1;
+    output.textContent = '';
+
+    if (highlightStart < 0 || length <= highlightStart) {
+      output.textContent = visibleText;
+      return;
+    }
+
+    var highlightEnd = highlightStart + highlight.length;
+    output.appendChild(document.createTextNode(text.slice(0, highlightStart)));
+
+    var highlightNode = document.createElement('span');
+    highlightNode.className = 'hero-highlight';
+    highlightNode.textContent = text.slice(highlightStart, Math.min(length, highlightEnd));
+    output.appendChild(highlightNode);
+
+    if (length > highlightEnd) {
+      output.appendChild(document.createTextNode(text.slice(highlightEnd, length)));
+    }
+  }
+
+  function typeTarget(target) {
+    if (target.classList.contains('typewriter-complete') || target.classList.contains('is-typing')) {
+      return;
+    }
+
+    var output = target.querySelector('.typewriter-text');
+    var text = target.dataset.typewriterText;
+    var highlight = target.dataset.typewriterHighlight || '';
+    var index = 0;
+    target.classList.add('is-typing');
+
+    function typeNextCharacter() {
+      index += 1;
+      renderTypedText(output, text, index, highlight);
+
+      if (index >= text.length) {
+        target.classList.remove('is-typing');
+        target.classList.add('typewriter-complete');
+        return;
+      }
+
+      var character = text.charAt(index - 1);
+      var delay = /[,.!?]/.test(character) ? 115 : 42;
+      window.setTimeout(typeNextCharacter, delay);
+    }
+
+    typeNextCharacter();
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        typeTarget(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.55, rootMargin: '0px 0px -8% 0px' });
+
+  targets.forEach(function (target) {
+    observer.observe(target);
+  });
+
+  function startLoadTypewriters() {
+    window.setTimeout(function () {
+      loadTargets.forEach(typeTarget);
+    }, 900);
+  }
+
+  if (document.readyState === 'complete') {
+    startLoadTypewriters();
+  } else {
+    window.addEventListener('load', startLoadTypewriters, { once: true });
+  }
+}());
+
 $(function(){
     "use strict";
 

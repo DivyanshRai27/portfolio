@@ -152,7 +152,7 @@
 					<div class="hero-copy">
 						<div class="hero-kicker"><span class="hero-status" aria-hidden="true"></span> Backend systems · distributed architecture</div>
 						<p class="hero-name mb-2">Hi, I'm Divyansh Rai.</p>
-						<h1>I engineer <span>backend systems</span> that scale.</h1>
+						<h1 data-typewriter data-typewriter-load data-typewriter-highlight="backend systems">I engineer <span class="hero-highlight">backend systems</span> that scale.</h1>
 						<p class="hero-summary">Backend Engineer with 3.5+ years of experience building high-traffic platforms, microservices, APIs, and AI-powered operational tools.</p>
 
 						<div class="hero-stack" aria-label="Primary technologies">
@@ -161,7 +161,7 @@
 
 						<div class="hero-actions">
 							<a href="#works" class="btn btn-default">Explore my work <span aria-hidden="true">→</span></a>
-							<a href="/files/Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">View résumé</a>
+							<a href="files/Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">View résumé</a>
 						</div>
 
 						<ul class="social-icons light list-inline hero-socials">
@@ -245,7 +245,7 @@
 		<div class="container">
 			
 			<!-- section title -->
-			<h2 class="section-title wow fadeInUp">About Me</h2>
+			<h2 class="section-title wow fadeInUp" data-typewriter>About Me</h2>
 
 			<div class="spacer" data-height="45"></div>
 
@@ -273,7 +273,7 @@
 							</div>
 
 							<div class="about-actions">
-								<a href="/files/Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-default">Download résumé</a>
+								<a href="files/Resume.pdf" download="Divyansh-Rai-Resume.pdf" class="btn btn-default">Download résumé</a>
 								<a href="#experience" class="btn btn-about-secondary">View experience</a>
 							</div>
 						</div>
@@ -430,7 +430,7 @@
 		<div class="container">
 			
 			<!-- section title -->
-			<h2 class="section-title wow fadeInUp">Experience</h2>
+			<h2 class="section-title wow fadeInUp" data-typewriter>Experience</h2>
 
 			<div class="spacer" data-height="60"></div>
 			
@@ -544,101 +544,88 @@
 		<div class="container">
 			
 			<!-- section title -->
-			<h2 class="section-title wow fadeInUp">Projects</h2>
+			<h2 class="section-title wow fadeInUp" data-typewriter>Projects</h2>
 
-			<div class="spacer" data-height="60"></div>
-
-			<!-- portfolio filter (desktop) -->
-			<ul class="portfolio-filter list-inline wow fadeInUp">
-				<li class="current list-inline-item" data-filter="*">All</li>
-				<li class="list-inline-item" data-filter=".backend">Backend</li>
-				<li class="list-inline-item" data-filter=".ai">AI &amp; MCP</li>
-				<li class="list-inline-item" data-filter=".data-api">Data &amp; APIs</li>
-			</ul>
-			
-			<!-- portfolio filter (mobile) -->
-			<div class="pf-filter-wrapper">
-				<select class="portfolio-filter-mobile">
-					<option value="*">Everything</option>
-					<option value=".backend">Backend</option>
-					<option value=".ai">AI &amp; MCP</option>
-					<option value=".data-api">Data &amp; APIs</option>
-				</select>
+			<div class="projects-heading wow fadeInUp">
+				<p>Selected systems I architected and developed—from AI-assisted operations to media infrastructure and data-driven APIs.</p>
+				<span>03 case studies</span>
 			</div>
-			
-			<!-- portolio wrapper -->
-			<div class="row portfolio-wrapper">
-				
 
-				<!-- portfolio item -->
-				<div class="col-md-4 col-sm-6 grid-item backend ai">
-					<a href="#small-dialog" class="work-content">
-						<div class="portfolio-item rounded shadow-dark">
+			<!-- portfolio wrapper -->
+			<div class="row portfolio-wrapper">
+
+				<div class="col-lg-4 col-md-6 grid-item backend ai">
+					<a href="#small-dialog" class="work-content" aria-label="View KwikEngage AI Ops case study">
+						<article class="portfolio-item project-card shadow-dark">
+							<div class="project-card-top"><span>01 / AI OPS</span><span class="project-status"><i></i>INTERNAL · VPN</span></div>
+							<div class="project-flow" aria-hidden="true">
+								<span>Claude</span><i>→</i><span>MCP server</span><i>→</i><span>REST APIs</span>
+							</div>
 							<div class="details">
 								<span class="term">AI &amp; MCP</span>
 								<h4 class="title">KwikEngage AI Ops</h4>
-								<p class="project-tech">Claude · MCP · NestJS</p>
-								<span class="more-button"><i class="icon-options"></i></span>
+								<p class="project-summary">Automated merchant operations by connecting Claude to internal backend capabilities through a custom MCP server.</p>
+								<div class="project-result"><strong>70%</strong><span>less manual effort across 200+ merchants</span></div>
+								<div class="project-footer"><span>Architecture + development</span><strong>Explore case study <b>↗</b></strong></div>
 							</div>
-							<div class="thumb">
-								<img src="images/node.png" loading="lazy" alt="KwikEngage AI Ops MCP server" />
-								<div class="mask"></div>
-							</div>
-						</div>
+						</article>
 					</a>
-					<div id="small-dialog" class="white-popup zoom-anim-dialog mfp-hide">
-						<img src="images/node.png" loading="lazy" alt="Node.js mark representing the KwikEngage AI Ops project" />
-						<h2>KwikEngage AI Ops - MCP Server</h2>
-						<h4>Claude AI · MCP · NestJS · REST APIs</h4>
-						<p>A custom Model Context Protocol server that lets operations teams manage merchant configurations through natural language. It provides secure tools for user search, merchant token generation, and out-of-office configuration retrieval and updates.</p>
+					<div id="small-dialog" class="white-popup project-dialog zoom-anim-dialog mfp-hide">
+						<div class="project-dialog-head"><span>CASE STUDY / 01</span><span class="project-status"><i></i>INTERNAL · COMPANY VPN</span></div>
+						<h2>KwikEngage AI Ops</h2>
+						<p class="project-dialog-lead">A custom MCP server that enables Claude to safely work with KwikEngage’s internal backend APIs and automate repetitive operations workflows.</p>
+						<div class="project-dialog-metrics"><div><strong>70%</strong><span>reduction in manual effort</span></div><div><strong>200+</strong><span>merchants supported</span></div></div>
+						<div class="project-dialog-grid"><div><h4>Challenge</h4><p>Operations work required repeated manual actions across merchant accounts, slowing the team down as usage grew.</p></div><div><h4>My contribution</h4><p>I owned the system architecture and development of the MCP integration.</p></div><div><h4>Architecture</h4><p>Claude communicates with a purpose-built MCP server, which invokes the company’s existing REST APIs within the private network.</p></div><div><h4>Technology</h4><p>Claude · Model Context Protocol · REST APIs</p></div></div>
 					</div>
 				</div>
 
-				<!-- portfolio item -->
-				<div class="col-md-4 col-sm-6 grid-item backend data-api">
-					<a href="#small-dialog2" class="work-content">
-						<div class="portfolio-item rounded shadow-dark">
+				<div class="col-lg-4 col-md-6 grid-item backend data-api">
+					<a href="#small-dialog2" class="work-content" aria-label="View File Management Service case study">
+						<article class="portfolio-item project-card shadow-dark">
+							<div class="project-card-top"><span>02 / INFRA</span><span class="project-status"><i></i>INTERNAL</span></div>
+							<div class="project-flow" aria-hidden="true">
+								<span>Client</span><i>→</i><span>S3</span><i>→</i><span>Redis</span>
+							</div>
 							<div class="details">
 								<span class="term">Backend Infrastructure</span>
 								<h4 class="title">File Management Service</h4>
-								<p class="project-tech">Node.js · AWS · CDN</p>
-								<span class="more-button"><i class="icon-options"></i></span>
+								<p class="project-summary">Centralized image, video, and PDF handling with S3 uploads and Redis-cached signed URLs.</p>
+								<div class="project-result"><strong>50%</strong><span>faster file access and delivery</span></div>
+								<div class="project-footer"><span>Architecture + development</span><strong>Explore case study <b>↗</b></strong></div>
 							</div>
-							<div class="thumb">
-								<img src="images/database-svgrepo-com.svg" loading="lazy" alt="File Management Service" />
-								<div class="mask"></div>
-							</div>
-						</div>
+						</article>
 					</a>
-					<div id="small-dialog2" class="white-popup zoom-anim-dialog mfp-hide">
-						<img src="images/database-svgrepo-com.svg" loading="lazy" alt="Database symbol representing File Management Service" />
+					<div id="small-dialog2" class="white-popup project-dialog zoom-anim-dialog mfp-hide">
+						<div class="project-dialog-head"><span>CASE STUDY / 02</span><span class="project-status"><i></i>INTERNAL TOOL</span></div>
 						<h2>File Management Service</h2>
-						<h4>Node.js · AWS · Cloudinary · CloudFront</h4>
-						<p>A centralized backend service for secure media uploads, storage, retrieval, and access across products. It supports adaptive multi-resolution processing and CloudFront CDN delivery for faster media experiences.</p>
+						<p class="project-dialog-lead">A centralized backend service for storing and retrieving product media, including images, videos, and PDF documents.</p>
+						<div class="project-dialog-metrics"><div><strong>50%</strong><span>speed improvement</span></div><div><strong>3</strong><span>media formats supported</span></div></div>
+						<div class="project-dialog-grid"><div><h4>Challenge</h4><p>Products needed one consistent service for handling multiple media types without duplicating upload and retrieval logic.</p></div><div><h4>My contribution</h4><p>I designed the architecture and developed the service.</p></div><div><h4>Architecture</h4><p>Files are uploaded to Amazon S3, while generated signed URLs are cached in Redis to accelerate repeated access.</p></div><div><h4>Technology</h4><p>Node.js · Amazon S3 · Redis · Signed URLs</p></div></div>
 					</div>
 				</div>
 
-				<!-- portfolio item -->
-				<div class="col-md-4 col-sm-6 grid-item data-api">
-					<a href="#small-dialog4" class="work-content">
-						<div class="portfolio-item rounded shadow-dark">
+				<div class="col-lg-4 col-md-6 grid-item data-api">
+					<a href="#small-dialog4" class="work-content" aria-label="View Globe Trotter case study">
+						<article class="portfolio-item project-card shadow-dark">
+							<div class="project-card-top"><span>03 / NASA</span><span class="project-status award"><i></i>2ND PLACE</span></div>
+							<div class="project-flow" aria-hidden="true">
+								<span>NASA data</span><i>→</i><span>Backend APIs</span><i>→</i><span>Web UI</span>
+							</div>
 							<div class="details">
 								<span class="term">Data &amp; APIs</span>
 								<h4 class="title">Globe Trotter</h4>
-								<p class="project-tech">NASA APIs · Visualization</p>
-								<span class="more-button"><i class="icon-options"></i></span>
+								<p class="project-summary">A NASA Space Apps solution that transforms complex datasets into an accessible visual web experience.</p>
+								<div class="project-result"><strong>#2</strong><span>competition position</span></div>
+								<div class="project-footer"><span>Backend API development</span><strong>Explore case study <b>↗</b></strong></div>
 							</div>
-							<div class="thumb">
-								<img src="images/projects/gt.png" loading="lazy" alt="Globe Trotter NASA Space Apps project" />
-								<div class="mask"></div>
-							</div>
-						</div>
+						</article>
 					</a>
-					<div id="small-dialog4" class="white-popup zoom-anim-dialog mfp-hide">
-						<img src="images/projects/gt.png" loading="lazy" alt="Globe Trotter data visualization" />
+					<div id="small-dialog4" class="white-popup project-dialog zoom-anim-dialog mfp-hide">
+						<div class="project-dialog-head"><span>CASE STUDY / 03</span><span class="project-status award"><i></i>2ND PLACE</span></div>
 						<h2>Globe Trotter</h2>
-						<h4>NASA APIs · Data visualization · Web application</h4>
-						<p>A NASA Space Apps data-visualization solution that extracts, decodes, and presents complex World Wide Technology datasets through an accessible web interface.</p>
+						<p class="project-dialog-lead">A NASA Space Apps data-visualization project that extracts and presents complex datasets through a more approachable web interface.</p>
+						<div class="project-dialog-metrics"><div><strong>#2</strong><span>competition position</span></div><div><strong>NASA</strong><span>Space Apps project</span></div></div>
+						<div class="project-dialog-grid"><div><h4>Challenge</h4><p>Make complex NASA-related datasets easier for people to explore and understand.</p></div><div><h4>My contribution</h4><p>I developed the backend APIs that supplied the application with its data.</p></div><div><h4>Solution</h4><p>The application extracts and decodes the source data, then exposes it to a visual web experience.</p></div><div><h4>Technology</h4><p>Backend APIs · NASA datasets · Data visualization</p></div></div>
 					</div>
 				</div>
 
@@ -654,61 +641,54 @@
 			<!-- section title -->
 			<h2 class="section-title wow fadeInUp">Major Achievements</h2>
 
-			<div class="spacer" data-height="60"></div>
-			
-			<div class="row blog-wrapper">
-				
-				<div class="col-md-4">
-					<!-- blog item -->
-					<div class="blog-item rounded bg-dark shadow-light wow fadeIn">
-						<div class="thumb">
-							<span class="category">IIIT Delhi</span>
-							<img src="images/IIITD.png" loading="lazy" alt="IIIT Delhi HackIIITD achievement" />
-						</div>
-						<div class="details">
-							<h4 class="my-0 title">Esya: HackIIITD</h4>
-							<ul class="list-inline meta mb-0 mt-2">
-								<li class="list-inline-item">23 August, 2019</li>
-								<li class="list-inline-item">Runner-up</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+			<div class="achievements-heading wow fadeInUp">
+				<p>Competitive builds where engineering decisions, teamwork, and delivery were tested under real deadlines.</p>
+				<span>2019 season</span>
+			</div>
 
-				<div class="col-md-4">
-					<!-- blog item -->
-					<div class="blog-item rounded bg-dark shadow-light wow fadeIn">
-						<div class="thumb">
-							<span class="category">Chandigarh University</span>
-							<img src="images/cu.png" loading="lazy" alt="NASA Space Apps Challenge achievement" />
-						</div>
-						<div class="details">
-							<h4 class="my-0 title">NASA Space Apps Challenge</h4>
-							<ul class="list-inline meta mb-0 mt-2">
-								<li class="list-inline-item">20 October, 2019</li>
-								<li class="list-inline-item">2nd Runner-up</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+			<div class="achievement-showcase">
+				<aside class="achievement-summary wow fadeInUp">
+					<div class="achievement-summary-top"><span>AWARDS.LOG</span><i></i></div>
+					<strong>03</strong>
+					<h3>Podium finishes</h3>
+					<p>Across software, data, and robotics competitions.</p>
+					<div class="achievement-signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+				</aside>
 
-				<div class="col-md-4">
-					<!-- blog item -->
-					<div class="blog-item rounded bg-dark shadow-light wow fadeIn">
-						<div class="thumb">
-							<span class="category">TIET, Patiala</span>
-							<img src="images/elc.png" loading="lazy" alt="ELC Robotic Arm achievement" />
+				<div class="achievement-list">
+					<article class="achievement-card wow fadeInUp">
+						<figure><img src="images/IIITD.png" loading="lazy" alt="Team at Esya HackIIITD, IIIT Delhi" /></figure>
+						<div class="achievement-copy">
+							<span class="achievement-index">01 / HACKATHON</span>
+							<small>IIIT Delhi</small>
+							<h3>Esya: HackIIITD</h3>
+							<time datetime="2019-08-23">23 August 2019</time>
 						</div>
-						<div class="details">
-							<h4 class="my-0 title">ELC Robotic Arm</h4>
-							<ul class="list-inline meta mb-0 mt-2">
-								<li class="list-inline-item">21 April, 2019</li>
-								<li class="list-inline-item">Winner</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+						<div class="achievement-rank"><span>Result</span><strong>Runner-up</strong></div>
+					</article>
 
+					<article class="achievement-card wow fadeInUp" data-wow-delay="0.08s">
+						<figure><img src="images/cu.png" loading="lazy" alt="Team at NASA Space Apps Challenge, Chandigarh University" /></figure>
+						<div class="achievement-copy">
+							<span class="achievement-index">02 / DATA &amp; APIs</span>
+							<small>Chandigarh University</small>
+							<h3>NASA Space Apps Challenge</h3>
+							<time datetime="2019-10-20">20 October 2019</time>
+						</div>
+						<div class="achievement-rank silver"><span>Result</span><strong>2nd Place</strong></div>
+					</article>
+
+					<article class="achievement-card wow fadeInUp" data-wow-delay="0.16s">
+						<figure><img src="images/elc.png" loading="lazy" alt="ELC robotic arm competition project at TIET Patiala" /></figure>
+						<div class="achievement-copy">
+							<span class="achievement-index">03 / ROBOTICS</span>
+							<small>TIET, Patiala</small>
+							<h3>ELC Robotic Arm</h3>
+							<time datetime="2019-04-21">21 April 2019</time>
+						</div>
+						<div class="achievement-rank winner"><span>Result</span><strong>Winner</strong></div>
+					</article>
+				</div>
 			</div>
 
 		</div>
@@ -721,28 +701,40 @@
 		<div class="container">
 			
 			<!-- section title -->
-			<h2 class="section-title wow fadeInUp">Get In Touch</h2>
+			<h2 class="section-title wow fadeInUp" data-typewriter>Get In Touch</h2>
 
-			<div class="spacer" data-height="60"></div>
-			
-			<div class="row">
-				
-				<div class="col-md-6">
-					<!-- contact info -->
-					<div class="contact-info">
-						<h3 class="wow fadeInUp">Let's build something reliable.</h3>
-						<p class="wow fadeInUp">I'm open to conversations about backend platforms, scalable APIs, distributed systems, and AI integrations.</p>
-						<p class="contact-location wow fadeInUp"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Pathankot, Punjab, India</p>
+			<div class="contact-shell wow fadeInUp">
+				<div class="contact-copy">
+					<div class="contact-status"><i></i><span>Available for backend opportunities</span></div>
+					<span class="contact-kicker">LET'S BUILD / 08</span>
+					<h3>Have a system that needs to scale?</h3>
+					<p>I’m open to conversations about backend platforms, scalable APIs, distributed systems, and practical AI integrations.</p>
+
+					<div class="contact-context">
+						<div><small>Based in</small><strong><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Pathankot, Punjab</strong></div>
+						<div><small>Focus</small><strong>Reliable backend systems</strong></div>
 					</div>
 				</div>
 
-				<div class="col-md-6">
-					<!-- Contact Form -->
-					<a href="mailto:divyanshrai27@gmail.com" class="btn btn-default"> <i class="fas fa-envelope" aria-hidden="true"></i> &nbsp; divyanshrai27@gmail.com</a><br><br>
-					<a href="tel:+919530990077" class="btn btn-default"> <i class="fas fa-phone" aria-hidden="true"></i> &nbsp; (+91) 9530-990077</a>
-					
+				<div class="contact-routes">
+					<div class="contact-routes-head"><span>CONTACT.API</span><span class="contact-route-state"><i></i>ONLINE</span></div>
 
-					<!-- Contact Form end -->
+					<a href="mailto:divyanshrai27@gmail.com" class="contact-route" aria-label="Email Divyansh Rai">
+						<span class="contact-route-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+						<span class="contact-route-copy"><small>Preferred channel</small><strong>divyanshrai27@gmail.com</strong></span>
+						<span class="contact-route-arrow">↗</span>
+					</a>
+
+					<a href="tel:+919530990077" class="contact-route" aria-label="Call Divyansh Rai">
+						<span class="contact-route-icon"><i class="fas fa-phone" aria-hidden="true"></i></span>
+						<span class="contact-route-copy"><small>Phone</small><strong>+91 95309 90077</strong></span>
+						<span class="contact-route-arrow">↗</span>
+					</a>
+
+					<div class="contact-socials">
+						<a href="https://www.linkedin.com/in/divyansh-rai-6279b9188/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i><span>LinkedIn</span><b>↗</b></a>
+						<a href="https://github.com/DivyanshRai27" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i><span>GitHub</span><b>↗</b></a>
+					</div>
 				</div>
 			</div>
 		</div>
