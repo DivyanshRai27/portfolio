@@ -291,8 +291,23 @@ $(window).on('load', function() {
 
   function renderTypedText(output, text, length, highlight) {
     var visibleText = text.slice(0, length);
+    var useBraceStyle = output.parentElement.hasAttribute('data-typewriter-braces');
     var highlightStart = highlight ? text.indexOf(highlight) : -1;
     output.textContent = '';
+
+    if (useBraceStyle) {
+      Array.prototype.forEach.call(visibleText, function (character) {
+        if (character === '{' || character === '}') {
+          var brace = document.createElement('span');
+          brace.className = 'code-brace';
+          brace.textContent = character;
+          output.appendChild(brace);
+        } else {
+          output.appendChild(document.createTextNode(character));
+        }
+      });
+      return;
+    }
 
     if (highlightStart < 0 || length <= highlightStart) {
       output.textContent = visibleText;
@@ -320,6 +335,7 @@ $(window).on('load', function() {
     var output = target.querySelector('.typewriter-text');
     var text = target.dataset.typewriterText;
     var highlight = target.dataset.typewriterHighlight || '';
+    var speed = parseInt(target.dataset.typewriterSpeed, 10) || 42;
     var index = 0;
     target.classList.add('is-typing');
 
@@ -334,7 +350,7 @@ $(window).on('load', function() {
       }
 
       var character = text.charAt(index - 1);
-      var delay = /[,.!?]/.test(character) ? 115 : 42;
+      var delay = /[,.!?]/.test(character) ? Math.max(115, speed * 2) : speed;
       window.setTimeout(typeNextCharacter, delay);
     }
 
@@ -355,9 +371,12 @@ $(window).on('load', function() {
   });
 
   function startLoadTypewriters() {
-    window.setTimeout(function () {
-      loadTargets.forEach(typeTarget);
-    }, 900);
+    loadTargets.forEach(function (target) {
+      var delay = parseInt(target.dataset.typewriterDelay, 10) || 0;
+      window.setTimeout(function () {
+        typeTarget(target);
+      }, delay);
+    });
   }
 
   if (document.readyState === 'complete') {

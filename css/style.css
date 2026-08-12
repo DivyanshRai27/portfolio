@@ -2860,6 +2860,18 @@ body.coder-theme {
   line-height: 1;
 }
 
+.code-logo[data-typewriter] {
+  align-items: center;
+  display: inline-flex;
+  min-height: 1em;
+}
+
+.coder-theme .code-logo .typewriter-cursor {
+  height: 0.78em;
+  margin-left: 4px;
+  width: 2px;
+}
+
 .code-brace {
   color: var(--code-green);
   font-weight: 500;
